@@ -1,0 +1,29 @@
+<div class="sidenav-container" [ngClass]="{ 'displayed': displayed}">
+  <nav class="sidenav">
+    <div class="profile-container">
+      <div class="capital-container">J</div>
+      <div class="username">Jasid</div>
+    </div>
+    <div class="options-container">
+      <div class="myDocuments-container nav-option active">
+        <div class="icon-container">
+          <fa-icon [icon]="faDocument"></fa-icon>
+        </div>
+        <div class="optionName">
+          Documents
+        </div>
+      </div>
+      <div class="myDocuments-container nav-option">
+        <div class="icon-container">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </div>
+        <div class="optionName">
+          Reviews
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<button class="nav-btn" [ngClass]="{ 'displayed': displayed}" (click)="toggle()">
+  <fa-icon [icon]="faBars"></fa-icon>
+</button>

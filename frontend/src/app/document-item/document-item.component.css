@@ -1,0 +1,58 @@
+.document {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: rgb(139, 179, 211);
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: 50px calc(100% - 150px) 100px;
+}
+
+.document-icon {
+  width: 50px;
+  height: 50px;
+
+  font-size: 25px;
+  border: 1px solid rgb(0, 40, 85);
+  border-radius: 50%;
+
+  justify-self: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details {
+  margin-left: 10px;
+}
+
+.document-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.document-status {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.document-status.reviewing {
+  color: rgb(182, 155, 0);
+}
+
+.document-status.accepted {
+  color: green;
+}
+
+.document-status.rejected {
+  color: red;
+}
+
+.options {
+  font-size: 22px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
