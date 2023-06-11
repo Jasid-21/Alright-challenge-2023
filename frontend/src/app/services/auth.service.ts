@@ -5,15 +5,15 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class AuthService {
 
   constructor(private router: Router, private cookieServ: CookieService) { }
 
   async sendRequest(
     email: string,
-    password: string
+    password: string,
+    url: string
     ) {
-    const url = `http://localhost:3000/auth/register`;
     const resp = await fetch(url, {
       method: 'post',
       headers: {

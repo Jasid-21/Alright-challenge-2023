@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from './register.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class RegisterComponent {
   confirm: string = '';
   myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service: RegisterService) {
+  constructor(private formBuilder: FormBuilder, private regService: AuthService) {
     this.myForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -28,6 +28,7 @@ export class RegisterComponent {
       alert("Password and confirmation don't match");
       return;
     }
-    this.service.sendRequest(this.email, this.password);
+    const url = `http://localhost:3000/auth/register`
+    this.regService.sendRequest(this.email, this.password, url);
   }
 }

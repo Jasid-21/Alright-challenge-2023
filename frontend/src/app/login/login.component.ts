@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
-import { LoginService } from './login.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -13,9 +13,10 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: AuthService) {}
 
   login() {
-    this.loginService.sendRequest(this.email, this.password);
+    const url = `http://localhost:3000/auth/login`;
+    this.loginService.sendRequest(this.email, this.password, url);
   }
 }
