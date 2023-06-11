@@ -1,0 +1,25 @@
+<div class="masterContainer">
+  <div class="form-container">
+    <div class="logo-container">
+      <fa-icon [icon]="faKey"></fa-icon>
+    </div>
+    <h2>Login Form</h2>
+    <form (ngSubmit)="submit()" class="login-form">
+      <label for="email">Username</label>
+      <input class="form-input" type="email" name="email" [(ngModel)]="email" required>
+      <br>
+      <label for="password">Password</label>
+      <input class="form-input" type="password" name="password" [(ngModel)]="password" required>
+      <br>
+      <label for="confirm">Confirm Password</label>
+      <input class="form-input" type="password" name="confirm" [(ngModel)]="confirm" required>
+      <br>
+      <br>
+      <input class="submit-btn" type="submit" value="Register!">
+    </form>
+    <br>
+    <div class="optional-redirect">
+      Alredy have an account? <b><a routerLink="/login">Login!</a></b>
+    </div>
+  </div>
+</div>
