@@ -25,7 +25,7 @@
   border-radius: 10px;
 
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 75% 25%;
 }
 
 .filter-name {

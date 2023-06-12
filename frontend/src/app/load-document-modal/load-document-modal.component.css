@@ -1,0 +1,82 @@
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 300px;
+  height: 400px;
+
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 10px;
+
+  padding: 10px;
+
+  display: grid;
+  grid-template-rows: 20px calc(100% - 20px);
+}
+
+.modal-options {
+  width: 100%;
+  border-bottom: 2px solid rgb(0, 82, 129);
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  width: 50px;
+  background-color: transparent;
+  border: none;
+  color: rgb(0, 82, 129);
+  font-style: italic;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+
+.content label {
+  font-weight: 600;
+}
+
+.doc-name {
+  width: 100%;
+  height: 25px;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 30px;
+
+  background-color: rgb(0, 0, 85);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+
+  border-radius: 5px;
+  border: 2px solid rgb(0, 0, 85);
+
+  transition-property: background-color, color;
+  transition-duration: 180ms;
+}
+
+.submit-btn:hover {
+  background-color: rgba(0, 0, 85, 0);
+  color: rgb(0, 0, 85);
+}

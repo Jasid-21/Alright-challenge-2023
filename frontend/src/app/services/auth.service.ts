@@ -28,8 +28,8 @@ export class AuthService {
     console.log(status);
     if (status == 201) {
       const json = await resp.json();
-      console.log(json.token);
-      this.cookieServ.set('jwt', json.token);
+      console.log(json);
+      localStorage.setItem('token', json.token);
       this.router.navigate(['/']);
     }
   }

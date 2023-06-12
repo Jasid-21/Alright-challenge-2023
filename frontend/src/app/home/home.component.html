@@ -1,32 +1,17 @@
 <div class="masterContainer">
+  <app-view-modal></app-view-modal>
+  <app-load-modal></app-load-modal>
   <app-sidenav></app-sidenav>
   <div class="body">
     <div class="documents-filter">
       <div class="filter-header">
         <div class="filter-name">Documents List</div>
-        <button class="new-document-btn">Upload</button>
+        <button class="new-document-btn" (click)="openLoadModal()">Upload</button>
       </div>
       <div class="documents-list-container">
         <ul class="documents-list">
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
-          <app-document-item></app-document-item>
+          <app-document-item *ngFor="let doc of (documents$ | async )" [doc]="doc">
+          </app-document-item>
         </ul>
       </div>
     </div>

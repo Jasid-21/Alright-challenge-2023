@@ -1,0 +1,27 @@
+<div class="modal-container" (click)="closeModal()" *ngIf="showModal">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-options">
+      <div class="pdf-options">
+        <button class="option-btn">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+
+        <button class="option-btn">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+
+        <button class="option-btn">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+
+        <button class="option-btn">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+      </div>
+      <button class="close-btn">Close</button>
+    </div>
+    <div class="content" *ngIf="sanitizedUrl">
+      <iframe [src]="sanitizedUrl"></iframe>
+    </div>
+  </div>
+</div>

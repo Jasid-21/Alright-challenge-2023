@@ -11,6 +11,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DocumentItemComponent } from './document-item/document-item.component';
+import { ViewDocumentModalComponent } from './view-document-modal/view-document-modal.component';
+import { LoadDocumentModalComponent } from './load-document-modal/load-document-modal.component';
+import { StoreModule } from '@ngrx/store';
+import { docsReducer } from 'src/state/docsState/docs.reducers';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,8 @@ import { DocumentItemComponent } from './document-item/document-item.component';
     RegisterComponent,
     SidenavComponent,
     DocumentItemComponent,
+    ViewDocumentModalComponent,
+    LoadDocumentModalComponent,
   ],
   imports: [
     FormsModule,
@@ -27,6 +33,7 @@ import { DocumentItemComponent } from './document-item/document-item.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    StoreModule.forRoot({ docs: docsReducer }),
   ],
   exports: [],
   providers: [],

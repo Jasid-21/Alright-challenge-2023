@@ -6,12 +6,20 @@ import { RegisterModule } from './register/register.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { entities } from './mySqlOrm/Entities';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
   imports: [
-    JwtModule,
+    JwtModule.register({
+      secret: process.env.SECRET,
+      signOptions: {
+        expiresIn: process.env.TOKEN_EXP,
+      },
+    }),
     RegisterModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       entities,
@@ -21,6 +29,7 @@ import { entities } from './mySqlOrm/Entities';
       password: process.env.DB_PASSWORD,
       host: process.env.DB_HOST,
     }),
+    DocumentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

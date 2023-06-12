@@ -30,9 +30,8 @@ export class RegisterService {
     createRegisterDto.password = bcrypt.hashSync(password, 10);
 
     const newUser = this.userRepo.create(createRegisterDto);
-    this.userRepo.save(newUser);
-    const token = this.jwtService.sign({ email });
-    console.log(token);
+    const regUser = await this.userRepo.save(newUser);
+    const token = this.jwtService.sign({ email, id: regUser.id });
     return { token };
   }
 
@@ -54,8 +53,7 @@ export class RegisterService {
       );
     }
 
-    const token = this.jwtService.sign({ email });
-    console.log(token);
+    const token = this.jwtService.sign({ email, id: user.id });
     return { token };
   }
 }

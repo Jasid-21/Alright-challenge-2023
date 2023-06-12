@@ -1,0 +1,17 @@
+<div class="modal-container" (click)="closeModal()" *ngIf="showModal">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-options">
+      <button class="close-btn">Close</button>
+    </div>
+    <div class="content">
+      <form (submit)="uploadFile()">
+        <label for="doc-name">Document name:</label><br>
+        <input class="doc-name" type="text" name="doc-name" placeholder="type here" [(ngModel)]="name">
+        <br><br>
+        <input type="file" (change)="onFileSelected($event)" accept=".pdf">
+        <br><br>
+        <button class="submit-btn" type="submit">Subir archivo</button>
+      </form>
+    </div>
+  </div>
+</div>
