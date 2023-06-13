@@ -7,10 +7,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { Document } from 'src/mySqlOrm/Document';
 import { ConfigModule } from '@nestjs/config';
 import { Reviewing } from 'src/mySqlOrm/Reviewing';
+import { Comment } from 'src/mySqlOrm/Comment';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Document, Reviewing]),
+    TypeOrmModule.forFeature([Document, Reviewing, Comment]),
     ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.SECRET,

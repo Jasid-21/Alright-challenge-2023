@@ -5,6 +5,7 @@ import { Document } from 'src/mySqlOrm/Document';
 import { Repository } from 'typeorm';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { Reviewing } from 'src/mySqlOrm/Reviewing';
+import { Comment } from 'src/mySqlOrm/Comment';
 
 @Injectable()
 export class DocumentsService {
@@ -13,6 +14,8 @@ export class DocumentsService {
     private readonly docsRepo: Repository<Document>,
     @InjectRepository(Reviewing)
     private readonly reviewRepo: Repository<Reviewing>,
+    @InjectRepository(Comment)
+    private readonly commentRepo: Repository<Comment>,
   ) {}
 
   async create(createDocumentDto: CreateDocumentDto) {
@@ -58,6 +61,17 @@ export class DocumentsService {
       await this.reviewRepo.save(newReview);
 
       this.docsRepo.update(doc_id, { status: 'reviewing' });
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async commentDoc(doc_id: number, owner: number, comment: string) {
+    try {
+      const newComment = this.commentRepo.create({ doc_id, owner, comment });
+      await this.commentRepo.save(newComment);
 
       return true;
     } catch (err) {

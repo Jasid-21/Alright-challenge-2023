@@ -93,4 +93,17 @@ export class DocumentsController {
       console.log(err);
     }
   }
+
+  @Post('comment')
+  @UseGuards(JwtAuthGuard)
+  commentDoc(@Req() request, @Body() body: any) {
+    try {
+      const owner = request.userData.id;
+      const doc_id = body.doc_id;
+      const comment = body.comment;
+      return this.documentsService.commentDoc(doc_id, owner, comment);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }

@@ -7,6 +7,7 @@ import { AppState } from 'src/state/app.state';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { faEye, faCommentDots, faCheck, faX, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { AskReviewModalComponent } from '../ask-review-modal/ask-review-modal.component';
+import { CommentPdfModalComponent } from '../comment-pdf-modal/comment-pdf-modal.component';
 
 @Component({
   selector: 'app-view-modal',
@@ -21,6 +22,7 @@ export class ViewDocumentModalComponent implements OnInit {
   faLogs = faClockRotateLeft;
 
   @ViewChild(AskReviewModalComponent) askModal!: AskReviewModalComponent;
+  @ViewChild(CommentPdfModalComponent) commentModal!: CommentPdfModalComponent;
 
   showModal = true;
   public current$: Observable<Document | null>;
@@ -56,6 +58,7 @@ export class ViewDocumentModalComponent implements OnInit {
       this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
     this.askModal.setDocId(doc.id);
+    this.commentModal.setDocId(doc.id);
   }
 
   ngOnInit() {

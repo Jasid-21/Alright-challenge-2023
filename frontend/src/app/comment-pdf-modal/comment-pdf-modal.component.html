@@ -1,1 +1,12 @@
-<p>comment-pdf-modal works!</p>
+<div class="modal-container" *ngIf="show" (click)="$event.stopPropagation();">
+  <div class="form-container">
+    <div class="modal-title">Ask for review</div>
+    <form class="review-form">
+      <input type="text" [(ngModel)]="comment" name="comment">
+      <div class="options">
+        <button (click)="sendComment()">Comment</button>
+        <button (click)="closeModal($event)">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
