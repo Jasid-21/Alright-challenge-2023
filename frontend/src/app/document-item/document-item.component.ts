@@ -4,7 +4,7 @@ import { Document } from '../interfaces/document.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/state/app.state';
 import { ModalService } from '../services/modal-service.service';
-import { setCurrent } from 'src/state/docsState/docs.actions';
+import { deleteDoc, setCurrent } from 'src/state/docsState/docs.actions';
 
 @Component({
   selector: 'app-document-item',
@@ -23,5 +23,25 @@ export class DocumentItemComponent {
     console.log("Hello");
     this.modal.openViewModal();
     this.store.dispatch(setCurrent({ doc: this.doc }));
+  }
+
+  async deleteDocument() {
+    if (!confirm('Are you sure you want to delete this document?')) return;
+
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.set('Authorization', `Bearer ${token}`);
+    const url = `http://localhost:3000/documents/${this.doc.id}`;
+    const resp = await fetch(url, {
+      method: 'delete',
+      headers
+    });
+    const status = resp.status;
+
+    if (status == 200) {
+      const json = await resp.json()
+      console.log(json);
+      this.store.dispatch(deleteDoc({ id: this.doc.id }));
+    }
   }
 }

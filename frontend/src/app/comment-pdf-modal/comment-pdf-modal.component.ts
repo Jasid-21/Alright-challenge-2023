@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./comment-pdf-modal.component.css']
 })
 export class CommentPdfModalComponent {
-  show: boolean = true;
+  show: boolean = false;
   comment: string = '';
   doc_id: number | undefined = undefined;
 
@@ -31,6 +31,10 @@ export class CommentPdfModalComponent {
       const json = await resp.json();
       console.log(json);
     }
+  }
+
+  showModal() {
+    this.show = true;
   }
 
   closeModal(e: Event) {

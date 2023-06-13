@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { addDoc, setCurrent, setDocs } from "./docs.actions";
+import { addDoc, setCurrent, setDocs, deleteDoc } from "./docs.actions";
 import { DocsState } from "src/app/interfaces/docsState.interface";
 
 const initialState: DocsState = {
@@ -22,7 +22,12 @@ const docsReducer = createReducer(
   on(setCurrent, (state, { doc }) => ({
     ...state,
     current: doc
-  }))
+  })),
+
+  on(deleteDoc, (state, { id }) => ({
+    ...state,
+    docs: state.docs.filter((d) => d.id != id)
+  })),
 );
 
 export { initialState, docsReducer };

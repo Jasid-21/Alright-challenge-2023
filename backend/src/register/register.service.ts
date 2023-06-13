@@ -32,7 +32,7 @@ export class RegisterService {
     const newUser = this.userRepo.create(createRegisterDto);
     const regUser = await this.userRepo.save(newUser);
     const token = this.jwtService.sign({ email, id: regUser.id });
-    return { token };
+    return { token, email, user_id: regUser.id };
   }
 
   async login(requestLoginDto: RequestLoginDto) {
@@ -54,6 +54,6 @@ export class RegisterService {
     }
 
     const token = this.jwtService.sign({ email, id: user.id });
-    return { token };
+    return { token, email, user_id: user.id };
   }
 }

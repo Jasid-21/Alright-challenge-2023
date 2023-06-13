@@ -24,7 +24,7 @@ export class ViewDocumentModalComponent implements OnInit {
   @ViewChild(AskReviewModalComponent) askModal!: AskReviewModalComponent;
   @ViewChild(CommentPdfModalComponent) commentModal!: CommentPdfModalComponent;
 
-  showModal = true;
+  showModal = false;
   public current$: Observable<Document | null>;
   sanitizedUrl: SafeResourceUrl | null = null;
 
@@ -73,5 +73,9 @@ export class ViewDocumentModalComponent implements OnInit {
 
   openAskModal() {
     this.askModal.showModal();
+  }
+
+  openCommentModal() {
+    this.commentModal.showModal();
   }
 }

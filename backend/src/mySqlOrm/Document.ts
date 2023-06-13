@@ -21,4 +21,10 @@ export class Document {
 
   @Column()
   status: DocStatus;
+
+  @Column({
+    type: 'int',
+    nullable: true,
+  })
+  guest_id: number;
 }

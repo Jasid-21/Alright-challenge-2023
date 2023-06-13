@@ -16,4 +16,9 @@ const setCurrent = createAction(
   props<{ doc: Document }>()
 )
 
-export { addDoc, setDocs, setCurrent };
+const deleteDoc = createAction(
+  '[App] delete document',
+  props<{ id: number }>()
+)
+
+export { addDoc, setDocs, setCurrent, deleteDoc };

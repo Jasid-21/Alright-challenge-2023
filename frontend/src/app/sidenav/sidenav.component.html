@@ -1,8 +1,8 @@
 <div class="sidenav-container" [ngClass]="{ 'displayed': displayed}">
   <nav class="sidenav">
     <div class="profile-container">
-      <div class="capital-container">J</div>
-      <div class="username">Jasid</div>
+      <div class="capital-container"> {{ email[0] }} </div>
+      <div class="username"> {{ email.split('@')[0] }} </div>
     </div>
     <div class="options-container">
       <div class="myDocuments-container nav-option active">
@@ -21,6 +21,7 @@
           Reviews
         </div>
       </div>
+      <div class="logout" (click)="logout()">Logout</div>
     </div>
   </nav>
 </div>

@@ -6,8 +6,8 @@
     <div class="document-name"> {{ doc.name }} </div>
     <div class="document-status" [ngClass]="doc.status" > {{ doc.status }} </div>
   </div>
-  <div class="options" (click)="openViewModal()">
-    <fa-icon [icon]="faView" ></fa-icon>
-    <fa-icon [icon]="faTrash"></fa-icon>
+  <div class="options">
+    <fa-icon [icon]="faView" (click)="openViewModal()"></fa-icon>
+    <fa-icon [icon]="faTrash" (click)="deleteDocument()"></fa-icon>
   </div>
 </div>

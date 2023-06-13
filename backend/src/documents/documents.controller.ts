@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UploadedFile,
@@ -20,7 +19,6 @@ import { CreateDocumentDto } from './dto/create-document.dto';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { getNewDocPath } from 'src/helpers/Functions';
 import { Response } from 'express';
-import { AskReview } from './dto/ask-review.dto';
 
 @Controller('documents')
 export class DocumentsController {
@@ -88,7 +86,7 @@ export class DocumentsController {
       const doc_id = body.doc_id;
       console.log(owner);
       console.log(doc_id);
-      return this.documentsService.askReview(doc_id, owner, guest_id);
+      return this.documentsService.askReview(doc_id, guest_id);
     } catch (err) {
       console.log(err);
     }

@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Document } from 'src/mySqlOrm/Document';
 import { Repository } from 'typeorm';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { Reviewing } from 'src/mySqlOrm/Reviewing';
 import { Comment } from 'src/mySqlOrm/Comment';
 
 @Injectable()
@@ -12,8 +11,6 @@ export class DocumentsService {
   constructor(
     @InjectRepository(Document)
     private readonly docsRepo: Repository<Document>,
-    @InjectRepository(Reviewing)
-    private readonly reviewRepo: Repository<Reviewing>,
     @InjectRepository(Comment)
     private readonly commentRepo: Repository<Comment>,
   ) {}
@@ -38,12 +35,23 @@ export class DocumentsService {
   }
 
   async findAll(id: number) {
-    return (await this.docsRepo.findBy({ owner: id })).map((d) => ({
+    const own = (await this.docsRepo.findBy({ owner: id })).map((d) => ({
       id: d.id,
       name: d.name,
       owner: d.owner,
       status: d.status,
+      guest_id: d.guest_id,
     }));
+
+    const guest = (await this.docsRepo.findBy({ guest_id: id })).map((d) => ({
+      id: d.id,
+      name: d.name,
+      owner: d.owner,
+      status: d.status,
+      guest_id: d.guest_id,
+    }));
+
+    return [...own, ...guest];
   }
 
   async findOne(id: number, user_id: number) {
@@ -55,12 +63,9 @@ export class DocumentsService {
     return this.docsRepo.remove(doc);
   }
 
-  async askReview(doc_id: number, owner: number, guest_id: number) {
+  async askReview(doc_id: number, guest_id: number) {
     try {
-      const newReview = this.reviewRepo.create({ doc_id, owner, guest_id });
-      await this.reviewRepo.save(newReview);
-
-      this.docsRepo.update(doc_id, { status: 'reviewing' });
+      this.docsRepo.update(doc_id, { status: 'reviewing', guest_id });
 
       return true;
     } catch (err) {

@@ -49,6 +49,7 @@
 
   display: grid;
   grid-template-rows: 60px calc(100% - 60px);
+  overflow: hidden;
 }
 
 .sidenav > div {
@@ -83,6 +84,19 @@
 
 .options-container {
   padding-top: 10px;
+  position: relative;
+}
+
+.logout {
+  width: 100%;
+  color: rgb(182, 0, 0);
+  font-size: 16px;
+  font-weight: 600;
+
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  cursor: pointer;
 }
 
 .nav-option {

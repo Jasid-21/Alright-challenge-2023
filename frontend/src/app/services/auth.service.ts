@@ -29,6 +29,8 @@ export class AuthService {
     if (status == 201) {
       const json = await resp.json();
       console.log(json);
+      localStorage.setItem('email', json.email);
+      localStorage.setItem('user_id', json.id);
       localStorage.setItem('token', json.token);
       this.router.navigate(['/']);
     }
