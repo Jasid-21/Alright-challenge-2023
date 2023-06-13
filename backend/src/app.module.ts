@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { entities } from './mySqlOrm/Entities';
 import { DocumentsModule } from './documents/documents.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { DocumentsModule } from './documents/documents.module';
       host: process.env.DB_HOST,
     }),
     DocumentsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

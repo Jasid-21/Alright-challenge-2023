@@ -6,10 +6,11 @@ import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { Document } from 'src/mySqlOrm/Document';
 import { ConfigModule } from '@nestjs/config';
+import { Reviewing } from 'src/mySqlOrm/Reviewing';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Document]),
+    TypeOrmModule.forFeature([Document, Reviewing]),
     ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.SECRET,

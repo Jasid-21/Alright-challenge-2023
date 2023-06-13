@@ -20,5 +20,5 @@ export class Reviewing {
   @Column({
     type: 'int',
   })
-  guest: number;
+  guest_id: number;
 }

@@ -1,0 +1,14 @@
+<div class="modal-container" *ngIf="show" (click)="$event.stopPropagation();">
+  <div class="form-container">
+    <div class="modal-title">Ask for review</div>
+    <form class="review-form">
+      <select name="users" class="available-users" [(ngModel)]="chosen_user">
+        <option *ngFor="let u of users" [value]="u.id"> {{ u.email }} </option>
+      </select>
+      <div class="options">
+        <button (click)="AskReview()">Request</button>
+        <button (click)="closeModal($event)">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

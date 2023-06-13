@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../services/modal-service.service';
-import { Document } from '../interfaces/document.interface';
 
 import { AppState } from 'src/state/app.state';
 import { Store } from '@ngrx/store';
-import { setCurrent, setDocs } from 'src/state/docsState/docs.actions';
+import { setDocs } from 'src/state/docsState/docs.actions';
 
 @Component({
   selector: 'app-home',

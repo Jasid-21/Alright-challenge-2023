@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDocumentDto } from './dto/create-document.dto';
-import { UpdateDocumentDto } from './dto/update-document.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Document } from 'src/mySqlOrm/Document';
 import { Repository } from 'typeorm';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { Reviewing } from 'src/mySqlOrm/Reviewing';
 
 @Injectable()
 export class DocumentsService {
   constructor(
     @InjectRepository(Document)
     private readonly docsRepo: Repository<Document>,
+    @InjectRepository(Reviewing)
+    private readonly reviewRepo: Repository<Reviewing>,
   ) {}
 
   async create(createDocumentDto: CreateDocumentDto) {
@@ -45,12 +47,21 @@ export class DocumentsService {
     return (await this.docsRepo.findOneBy({ id, owner: user_id })).filePath;
   }
 
-  update(id: number, updateDocumentDto: UpdateDocumentDto) {
-    return `This action updates a #${id} document`;
-  }
-
   async remove(id: number, owner: number) {
     const doc = await this.docsRepo.findOneBy({ id, owner });
     return this.docsRepo.remove(doc);
+  }
+
+  async askReview(doc_id: number, owner: number, guest_id: number) {
+    try {
+      const newReview = this.reviewRepo.create({ doc_id, owner, guest_id });
+      await this.reviewRepo.save(newReview);
+
+      this.docsRepo.update(doc_id, { status: 'reviewing' });
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

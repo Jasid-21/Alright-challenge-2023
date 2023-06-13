@@ -17,10 +17,10 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDto } from './dto/create-document.dto';
-import { UpdateDocumentDto } from './dto/update-document.dto';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { getNewDocPath } from 'src/helpers/Functions';
 import { Response } from 'express';
+import { AskReview } from './dto/ask-review.dto';
 
 @Controller('documents')
 export class DocumentsController {
@@ -73,19 +73,24 @@ export class DocumentsController {
     }
   }
 
-  @Patch(':id')
-  update(
-    @Param('id')
-    id: string,
-    @Body()
-    updateDocumentDto: UpdateDocumentDto,
-  ) {
-    return this.documentsService.update(+id, updateDocumentDto);
-  }
-
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string, @Req() request) {
     return this.documentsService.remove(+id, request.userData.id);
+  }
+
+  @Post('askReview')
+  @UseGuards(JwtAuthGuard)
+  askReview(@Req() request, @Body() body: any) {
+    try {
+      const owner = request.userData.id;
+      const guest_id = body.guest_id;
+      const doc_id = body.doc_id;
+      console.log(owner);
+      console.log(doc_id);
+      return this.documentsService.askReview(doc_id, owner, guest_id);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

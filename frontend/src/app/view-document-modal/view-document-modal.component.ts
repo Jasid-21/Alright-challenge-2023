@@ -1,11 +1,12 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalService } from '../services/modal-service.service';
 import { Observable } from 'rxjs';
 import { Document } from '../interfaces/document.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/state/app.state';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faCommentDots, faCheck, faX, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { AskReviewModalComponent } from '../ask-review-modal/ask-review-modal.component';
 
 @Component({
   selector: 'app-view-modal',
@@ -14,6 +15,13 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 })
 export class ViewDocumentModalComponent implements OnInit {
   faEye = faEye;
+  faComment = faCommentDots;
+  faAccept = faCheck;
+  faReject = faX;
+  faLogs = faClockRotateLeft;
+
+  @ViewChild(AskReviewModalComponent) askModal!: AskReviewModalComponent;
+
   showModal = true;
   public current$: Observable<Document | null>;
   sanitizedUrl: SafeResourceUrl | null = null;
@@ -47,6 +55,7 @@ export class ViewDocumentModalComponent implements OnInit {
       const url = URL.createObjectURL(blob);
       this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
+    this.askModal.setDocId(doc.id);
   }
 
   ngOnInit() {
@@ -57,5 +66,9 @@ export class ViewDocumentModalComponent implements OnInit {
 
   closeModal() {
     this.modalService.closeViewModal();
+  }
+
+  openAskModal() {
+    this.askModal.showModal();
   }
 }

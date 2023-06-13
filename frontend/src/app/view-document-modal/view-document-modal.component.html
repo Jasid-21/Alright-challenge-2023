@@ -1,24 +1,25 @@
 <div class="modal-container" (click)="closeModal()" *ngIf="showModal">
+  <app-ask-review-modal></app-ask-review-modal>
   <div class="modal" (click)="$event.stopPropagation()">
     <div class="modal-options">
       <div class="pdf-options">
-        <button class="option-btn">
+        <button class="option-btn" (click)="openAskModal()">
           <fa-icon [icon]="faEye"></fa-icon>
         </button>
 
         <button class="option-btn">
-          <fa-icon [icon]="faEye"></fa-icon>
+          <fa-icon [icon]="faComment"></fa-icon>
         </button>
 
         <button class="option-btn">
-          <fa-icon [icon]="faEye"></fa-icon>
+          <fa-icon [icon]="faAccept"></fa-icon>
         </button>
 
         <button class="option-btn">
-          <fa-icon [icon]="faEye"></fa-icon>
+          <fa-icon [icon]="faReject"></fa-icon>
         </button>
       </div>
-      <button class="close-btn">Close</button>
+      <button class="close-btn" (click)="closeModal()">Close</button>
     </div>
     <div class="content" *ngIf="sanitizedUrl">
       <iframe [src]="sanitizedUrl"></iframe>

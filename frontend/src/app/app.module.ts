@@ -15,6 +15,9 @@ import { ViewDocumentModalComponent } from './view-document-modal/view-document-
 import { LoadDocumentModalComponent } from './load-document-modal/load-document-modal.component';
 import { StoreModule } from '@ngrx/store';
 import { docsReducer } from 'src/state/docsState/docs.reducers';
+import { AskReviewModalComponent } from './ask-review-modal/ask-review-modal.component';
+import { CommentPdfModalComponent } from './comment-pdf-modal/comment-pdf-modal.component';
+import { PdfLogHistoryModalComponent } from './pdf-log-history-modal/pdf-log-history-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { docsReducer } from 'src/state/docsState/docs.reducers';
     DocumentItemComponent,
     ViewDocumentModalComponent,
     LoadDocumentModalComponent,
+    AskReviewModalComponent,
+    CommentPdfModalComponent,
+    PdfLogHistoryModalComponent,
   ],
   imports: [
     FormsModule,
